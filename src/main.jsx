@@ -8,6 +8,7 @@ import Contact from "./Pages/Contact.jsx";
 import About from "./Pages/About.jsx";
 import RootLayout from "./Layouts/RootLayout.jsx";
 import PlantDetails from "./Pages/PlantDetails.jsx";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,8 @@ const router = createBrowserRouter([
       {
         path: "/plant-details/:id",
         Component: PlantDetails,
+        loader: ({ params }) =>
+          axios(`https://openapi.programming-hero.com/api/plant/${params.id}`),
       },
     ],
   },

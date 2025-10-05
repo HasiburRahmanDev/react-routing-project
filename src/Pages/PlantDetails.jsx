@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React from "react";
+import { useLoaderData } from "react-router";
 
 const PlantDetails = () => {
-  const [plant, setPlant] = useState({});
+  const { data } = useLoaderData();
 
-  const { id } = useParams();
-  console.log(id);
+  const { name, description, image, price, category } = data.plants;
 
-  useEffect(() => {
-    fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
-      .then((res) => res.json())
-      .then((data) => setPlant(data?.plants));
-  }, [id]);
-
-  const { name, description, image, price, category } = plant;
-
-  console.log(name);
   return (
     <div>
       <div className="card bg-base-100 max-w-5xl mx-auto shadow-sm">
-        <figure className="h-48 overflow-hidden">
+        <figure className="h-60 overflow-hidden">
           <img className="w-full h-500px object-cover" src={image} />
         </figure>
         <div className="card-body">
